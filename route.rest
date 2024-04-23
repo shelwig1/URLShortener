@@ -1,0 +1,11 @@
+POST http://127.0.0.1:3000/shortURLs
+Content-Type: application/json
+
+{
+    "fullURL": "https://www.youtube.com",
+    "shortURL": "test"
+}
+
+###
+
+GET http://127.0.0.1:3000/shortURLs/apple
