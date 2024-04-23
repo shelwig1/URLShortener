@@ -18,37 +18,4 @@ app.use('/shortURLs', shortURLRouter)
 
 app.listen(3000, () => console.log('Server has started'))
 
-/*
-async function deleteOldEntries() {
-    try {
-        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000)
-        const result = await 
-    }
-}
-*/
-
-/*
-const shortURL = require('./models/shortURLModel')
-const hourMilliseconds = 3600000
-
-async function deleteOldEntries() {
-    console.log('Deleting old entries')
-    try {
-        //const oneHourAgo =  new Date(Date.now() - 60 * 60 * 1000)
-        const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
-        //const result = await shortURL.deleteMany( {creationDate: { $lt: oneHourAgo}})
-        const result = await shortURL.deleteMany( {creationDate: { $gte: tenMinutesAgo}})
-
-        if (result) {
-            message = result.deletedCount + " entries deleted"
-            console.log(message)
-        }
-    } catch (err) {
-        console.error('Error deleting old entries: ', err);
-    }
-}
-
-deleteOldEntries()
-setInterval(deleteOldEntries, 10000 )
-*/
 cleanUp.start
