@@ -1,37 +1,59 @@
-// TODO - load the blacklist into memory once, whenever it is updated refresh it 
-//import {fs} from 'fs';
-//require('fs').watchFile;
 const fs = require('fs');
-const shortURLBlacklist = './test.json'
+const shortURL = require('./models/shortURLModel')
+const shortBlackRef = './blacklists/shortURLblacklist.json'
 
-fs.watchFile(shortURLBlacklist, (curr, prev) =>{
-    // load the bad Larry into our memory and ensure we did it every time.
+let shortBlacklist = [];
 
-    // Read the thing on startup, and create a dictionary with all the blacklisted phrases in it.
+if (shortBlacklist.length == 0) {
+    console.log('empty array')
+ 
+    fs.readFile(shortBlackRef, "utf8", function (err, data) {
+        if (err) throw err;
 
-    // When it updates, print out "added new things to the list"
-    //prev = JSON.parse(prev)
-    //curr = JSON.parse(curr)
+        obj = JSON.parse(data);
+        shortBlacklist = data;
+        console.log(shortBlacklist);
+    });
+}
+
+// Sorting the file when a new thing gets added in so we don't do it every time we do a lookup.
+
+fs.watchFile(shortBlackRef, (curr, prev) =>{
     var obj;
-    fs.readFile(shortURLBlacklist, "utf8", function (err, data) {
+    fs.readFile(shortBlackRef, "utf8", function (err, data) {
         if (err) throw err;
         obj = JSON.parse(data);
         console.log(data)
+        shortURLpurge(data);
+        shortBlacklist = data;
+        shortBlacklist = data.sort();
     });
 
-    /*
-    fs.readFile(shortURLBlacklist, 'utf-8', function (err, data) {
-        if (err) throw err;
-        console.log(data);
+async function shortURLpurge(data) {
+    try{
+        for (let i = 0; i < shortBlacklist.length; i++) {
+            await ShortURLs.deleteMany({shortURL : shortBlacklist[i]})
+            res.json({message : "Entries deleted successfully"});
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error"});
+    }
+    }
 
-    })
-*/
-    //console.log(JSON.parse(prev));
-    //console.log(JSON.parse(curr));
-
-    // Everytime it's updated, check if there are any naughty words in existing entries and delete them
-    
 })
+
+
+async function validShortURL(shortURL) {
+    // Check through mongoose and see if it already exists
+    const result = await shortURL.findOne({ shortURL : attributeValue})
+
+    if (result) {
+        // Already exists -> how would I go about making sure that's reflected?
+        return false;
+    } else {
+        return !shortBlacklist.includes(shortURL)
+    }
+}
 
 function validFullURL(fullURL) {
     // search through existing text, check if there's a match
@@ -40,20 +62,8 @@ function validFullURL(fullURL) {
 
     // strip off any front or back shit, top level domains only
     return true;
-
 }
 
-async function validShortURL(shortURL) {
-    // Check through mongoose and see if it already exists
-    const result = await shortURL.findOne({ shortURL : attributeValue})
-
-    if (result) {
-        return false;
-    }
-
-    // Search through the blacklist and see if it's in there
-    return true;
-}
 
 /*
 router.get('/:shortURL', async (req, res) => {
@@ -72,4 +82,8 @@ router.get('/:shortURL', async (req, res) => {
     }
 
 })
+*/
+
+/*
+I have shortBlacklist and longBlacklist -> we can make this the same function with branching
 */

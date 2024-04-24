@@ -7,7 +7,7 @@ const shortURL = require('../models/shortURLModel')
 router.post('/', async (req,res) => {
     const aShortURL = new shortURL({
         fullURL: req.body.fullURL,
-        shortURL: req.body.shortURL
+        shortURL: req.body.shortURL.toLowerCase()
     })
 
     try {

@@ -8,3 +8,9 @@ Check for conflict with existing short URLs
 Front end
 
 
+Blacklist implementation
+-> take array from text file
+-> looking up an array 
+        Is there a way to implement binary sort to make lookup faster?
+
+        
