@@ -20,6 +20,10 @@ app.get('/', (req, res) => {
     res.render("index")
 })
 
+app.get('/save', (req, res) => {
+    // How to handle saving input from a form?
+})
+
 app.listen(3000, () => console.log('Server has started'))
 
 cleanUp.start

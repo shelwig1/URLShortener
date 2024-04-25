@@ -8,11 +8,18 @@
 </head>
 <body>
     <div class="form-wrapper">
-        <form id="user-input" action="/save" method="POST">
-            Long URL
-            <textarea name="fullURL"></textarea>
-            Short URL
-            <textarea name="shortURL"></textarea>
+        <form class="input-wrapper" action="/save" method="POST">
+            <div class="input-wrapper">
+                <label for="full">Full URL</label>
+                <input id="full" type="text" placeholder="Full URL">
+            </div>
+            
+            <div class="input-wrapper">
+                <label for="short">Short URL</label>
+                <input id="short" type="text" placeholder="Short URL">
+            </div>
+
+            <button class="btn" id="submit-button" type="submit">Submit</button>
         </form>
     </div>
 </body>

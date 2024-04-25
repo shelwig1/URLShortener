@@ -1,11 +1,20 @@
 .form-wrapper {
+
     background-color: aquamarine;
 }
 
-textarea {
-    display:block;
-}
 
 body {
     background-color:lightpink;
+}
+
+
+
+#submit-button {
+    display: inline;
+    color: green;
+}
+
+.input-wrapper {
+    padding: 20px;
 }
