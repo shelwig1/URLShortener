@@ -14,3 +14,10 @@ Blacklist implementation
         Is there a way to implement binary sort to make lookup faster?
 
         
+Implement validShort and validFull
+        Check for duplicates
+        Check against Blacklist
+        check if it's a fully qualified url, if not fix it
+
+Ensure blacklist updates
+Ensure blacklist clears out bad entries
