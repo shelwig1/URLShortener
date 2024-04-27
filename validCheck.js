@@ -43,25 +43,22 @@ async function shortURLpurge(data) {
 })
 
 
-async function validShortURL(shortURL) {
+async function shortCheck(short) {
     // Check through mongoose and see if it already exists
-    const result = await shortURL.findOne({ shortURL : attributeValue})
+   /*  const result = await shortURL.findOne({ shortURL : attributeValue})
 
     if (result) {
         // Already exists -> how would I go about making sure that's reflected?
         return false;
     } else {
         return !shortBlacklist.includes(shortURL)
-    }
+    } */
+    return (true);
 }
 
-function validFullURL(fullURL) {
-    // search through existing text, check if there's a match
+async function fullCheck(full) {
+    return (true);
 
-    // filter all to lower case
-
-    // strip off any front or back shit, top level domains only
-    return true;
 }
 
 
@@ -87,3 +84,7 @@ router.get('/:shortURL', async (req, res) => {
 /*
 I have shortBlacklist and longBlacklist -> we can make this the same function with branching
 */
+module.exports = {
+    shortCheck,
+    fullCheck
+}

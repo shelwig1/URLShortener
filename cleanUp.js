@@ -28,5 +28,5 @@ async function deleteOldEntries() {
 
 module.exports = start
 
-deleteOldEntries()
-setInterval(deleteOldEntries, cullInterval )
+//deleteOldEntries()
+//setInterval(deleteOldEntries, cullInterval )
