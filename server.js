@@ -3,7 +3,6 @@ const cleanUp = require('./cleanUp')
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-//const bodyParser = require('body-parser')
 
 
 
@@ -27,13 +26,6 @@ app.use('/shortURLs', shortURLRouter)
 app.get('/', (req, res) => {
     res.render("index")
 })
-
-/*
-app.post('/save', (req, res) => {
-    //const short = document.getElementById('short');
-    console.log(req.body.short)
-})
-*/
 
 app.listen(3000, () => console.log('Server has started'))
 

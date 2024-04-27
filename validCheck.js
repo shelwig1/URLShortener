@@ -53,6 +53,10 @@ async function shortCheck(short) {
     } else {
         return !shortBlacklist.includes(shortURL)
     } */
+
+
+    // Need to make it a fully qualified URL to make the redirect work appropriately.
+    // ie add https:// to the front if it's not already there
     return (true);
 }
 

@@ -2,13 +2,7 @@ const validCheck = require('../validCheck')
 const express = require('express')
 const router = express.Router()
 const shortURL = require('../models/shortURLModel')
-//const shortURLModel = require('../models/shortURLModel')
-/* const bodyParser = require('body-parser')
-const jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({extended: false})
- */
 
-//creating a new one
 router.post('/', async (req,res) => {
     console.log(await req.body.fullURL)
     console.log(await req.body.shortURL)
@@ -34,11 +28,6 @@ router.post('/', async (req,res) => {
         console.log("Invalid short or long URL")
     }    
     console.log(res);
-/*     console.log("Before redirect")
-    res.redirect('..')
-    console.log("After redirect") 
- */
-    
 })
 
 // Redirect from the shortURL to the full URL
